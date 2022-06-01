@@ -1,6 +1,7 @@
-import "./App.css";
+import "./App.scss";
 import { useEffect, useState } from "react";
 import { getPokemon } from "./apis/api";
+import Loader from "./components/Loader/Loader";
 
 function App() {
   const [pokemonList, setPokemonList] = useState([]);
@@ -9,7 +10,7 @@ function App() {
     async function getPokemonList() {
       try {
         const pokemon = await getPokemon();
-        setPokemonList(pokemon.results);
+        setPokemonList(pokemon);
       } catch (e) {
         console.log(e);
       }
@@ -17,16 +18,20 @@ function App() {
     getPokemonList();
   }, []);
 
-  console.log(pokemonList);
-
   if (!pokemonList.length) {
-    return <h1>...Loading</h1>;
+    return <Loader subtitle='Getting the pokemon ready' />;
   }
 
   return (
     <div className='App'>
       {pokemonList.map((pokemon) => (
-        <h1 key={pokemon.name}>{pokemon.name}</h1>
+        <>
+          <img
+            src={pokemon.sprites.other["official-artwork"]["front_default"]}
+            alt='pic'
+          />
+          <h1 key={pokemon.name}>{pokemon.name}</h1>
+        </>
       ))}
     </div>
   );

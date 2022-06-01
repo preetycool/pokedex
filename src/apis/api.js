@@ -1,10 +1,15 @@
 import { GET_POKEMON_LIST_URL } from "../common/common";
 
 export const getPokemon = async () => {
-  const pokemonData = fetch(GET_POKEMON_LIST_URL)
-    .then((res) => res.json())
-    .catch((e) => {
-      throw new Error(`Received error message: ${e}`);
-    });
-  return pokemonData;
+  try {
+    const response = await fetch(GET_POKEMON_LIST_URL);
+    const { results } = await response.json();
+    return Promise.all(
+      results.map((pokemon) => fetch(pokemon.url).then((res) => res.json()))
+    );
+  } catch (error) {
+    throw new Error(`Error while retrieving data: ${error}`);
+  }
 };
+
+export const getPokemonImage = (pokemonDataUrl) => {};
