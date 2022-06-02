@@ -5,11 +5,21 @@ import Loader from "./components/Loader/Loader";
 import EveryPokemonPage from "./containers/EveryPokemonPage/EveryPokemonPage";
 import Navbar from "./components/Navbar/Navbar";
 import SearchBar from "./components/SearchBar/SearchBar";
+import Pagination from "./components/Pagination/Pagination";
 
 function App() {
   const [pokemonList, setPokemonList] = useState([]);
   const [currentFilteredPokemonList, setCurrentFilteredPokemonList] = useState(
     []
+  );
+  const [currentPage, setCurrentPage] = useState(1);
+  const [pokemonPerPage] = useState(6);
+
+  const indexOfLastPokemon = currentPage * pokemonPerPage;
+  const indexOfFirstPokemon = indexOfLastPokemon - pokemonPerPage;
+  const currentPokemons = currentFilteredPokemonList.slice(
+    indexOfFirstPokemon,
+    indexOfLastPokemon
   );
 
   useEffect(() => {
@@ -30,12 +40,17 @@ function App() {
   }
 
   const handleSearchInputChange = (e) => {
+    setCurrentPage(1);
     const searchValue = e.target.value.toLowerCase();
 
     const filteredPokemonList = pokemonList.filter((pokemon) =>
       pokemon.name.toLowerCase().startsWith(searchValue)
     );
     setCurrentFilteredPokemonList(filteredPokemonList);
+  };
+
+  const handlePaginationLinkOnClick = (pageNumber) => {
+    setCurrentPage(pageNumber);
   };
 
   return (
@@ -45,7 +60,13 @@ function App() {
         placeholderText='Search a pokemon here!'
         handleChange={handleSearchInputChange}
       />
-      <EveryPokemonPage pokemonList={currentFilteredPokemonList} />
+      <EveryPokemonPage pokemonList={currentPokemons} />
+      <Pagination
+        pokemonPerPage={pokemonPerPage}
+        totalPokemon={currentFilteredPokemonList.length}
+        handleOnClick={handlePaginationLinkOnClick}
+        currentPage={currentPage}
+      />
     </div>
   );
 }
