@@ -1,7 +1,14 @@
 .pagination {
   display: flex;
   justify-content: center;
+  align-items: center;
   flex-wrap: wrap;
+
+  &__button {
+    width: 50px;
+    height: 50px;
+    background: lightgray;
+  }
 
   &__list {
     display: flex;
@@ -19,11 +26,11 @@
         border: none;
         padding: 1rem;
         background: #cd3238;
-        font-size: 1rem;
         border-radius: 100%;
         width: 50px;
         height: 50px;
         font-weight: bold;
+        border: black 2px solid;
 
         &:hover {
           cursor: pointer;

@@ -13,7 +13,7 @@ function App() {
     []
   );
   const [currentPage, setCurrentPage] = useState(1);
-  const [pokemonPerPage] = useState(6);
+  const [pokemonPerPage] = useState(8);
 
   const indexOfLastPokemon = currentPage * pokemonPerPage;
   const indexOfFirstPokemon = indexOfLastPokemon - pokemonPerPage;

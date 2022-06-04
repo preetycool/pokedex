@@ -28,7 +28,9 @@ const Pagination = ({
   return (
     <nav className='pagination'>
       {currentBeginningPageNumber > 0 && (
-        <button onClick={onBackClick}>back</button>
+        <button class='pagination__button' onClick={onBackClick}>
+          🡸
+        </button>
       )}
       <ul className='pagination__list'>
         {pageNumbers.map((number, index) => {
@@ -55,7 +57,9 @@ const Pagination = ({
         })}
       </ul>
       {pageNumbers.length - currentBeginningPageNumber > 10 && (
-        <button onClick={onForwardClick}>forward</button>
+        <button class='pagination__button' onClick={onForwardClick}>
+          🢂
+        </button>
       )}
     </nav>
   );
