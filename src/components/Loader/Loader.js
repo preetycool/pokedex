@@ -1,6 +1,7 @@
 import lottie from "lottie-web";
 import { useEffect } from "react";
 import pokeballLoader from "../../animations/pokeballLoader.json";
+import "./Loader.scss";
 
 const Loader = ({ subtitle }) => {
   useEffect(() => {

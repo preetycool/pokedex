@@ -6,6 +6,7 @@ import EveryPokemonPage from "./containers/EveryPokemonPage/EveryPokemonPage";
 import Navbar from "./components/Navbar/Navbar";
 import SearchBar from "./components/SearchBar/SearchBar";
 import Pagination from "./components/Pagination/Pagination";
+import { POKEMON_TEXT } from "./common/common";
 
 function App() {
   const [pokemonList, setPokemonList] = useState([]);
@@ -36,7 +37,7 @@ function App() {
   }, []);
 
   if (!pokemonList.length) {
-    return <Loader subtitle='Getting the pokemon ready' />;
+    return <Loader subtitle={`Getting the ${POKEMON_TEXT} ready`} />;
   }
 
   const handleSearchInputChange = (e) => {
@@ -57,7 +58,7 @@ function App() {
     <div className='App'>
       <Navbar />
       <SearchBar
-        placeholderText='Search a pokemon here!'
+        placeholderText='Search Pokemon here!'
         handleChange={handleSearchInputChange}
       />
       <EveryPokemonPage pokemonList={currentPokemons} />

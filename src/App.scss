@@ -1,26 +1,27 @@
+@import "main.scss";
+
 body {
   margin: 0;
 }
 
 .App {
+  @include for-phone-only {
+    .navbar {
+      order: -3;
+    }
+
+    .search-bar {
+      order: -2;
+    }
+
+    .pagination {
+      order: -1;
+      margin-bottom: 1rem;
+    }
+  }
+
   font-family: "Lato", sans-serif;
   font-size: 1.5rem;
-}
-
-.loader {
-  height: 100vh;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-
-  &__animation {
-    height: 200px;
-    width: 200px;
-  }
-
-  p {
-    font-family: "Lato", sans-serif;
-    font-size: 2rem;
-  }
 }
