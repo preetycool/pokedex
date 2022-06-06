@@ -3,10 +3,12 @@
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
+  margin-bottom: 1rem;
 
   &__button {
-    width: 50px;
-    height: 50px;
+    width: 30px;
+    height: 30px;
+    margin: 0 1rem;
     background: lightgray;
   }
 
@@ -15,7 +17,6 @@
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
-    margin: 0 2rem 1rem;
     padding: 0;
 
     .list-item {

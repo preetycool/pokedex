@@ -1,33 +1,126 @@
 @import "../../main.scss";
 
-.pokemon-tile {
-  @include for-phone-only {
-    max-width: 100%;
-    max-height: 100%;
-    align-items: center;
+.pokemon {
+  &-tile {
+    @include for-phone-only {
+      max-width: 100%;
+      max-height: 100%;
+      align-items: center;
+    }
+
+    display: flex;
+    flex-direction: column;
+    margin: 0 1rem 2rem;
+
+    &__image {
+      height: 200px;
+      width: 200px;
+      padding: 1rem;
+      background-color: lightgray;
+    }
+
+    &__number {
+      margin: 0;
+      font-size: 1rem;
+      color: grey;
+    }
+
+    &__text {
+      text-transform: capitalize;
+      font-size: 1.2rem;
+      margin: 0.5rem 0 0;
+      font-weight: bold;
+    }
   }
 
-  display: flex;
-  flex-direction: column;
-  margin: 0 1rem 2rem;
+  &-type {
+    display: flex;
+    flex-wrap: wrap;
 
-  &__image {
-    height: 200px;
-    width: 200px;
-    padding: 1rem;
-    background-color: lightgray;
-  }
+    p {
+      font-size: 1rem;
+      width: 50px;
+      text-align: center;
+      text-transform: capitalize;
+      padding: 0.2rem 1rem;
+      border: 2px solid black;
+      border-radius: 20px;
+    }
 
-  &__number {
-    margin: 0;
-    font-size: 1rem;
-    color: grey;
-  }
+    p:first-child {
+      margin-right: 0.5rem;
+    }
 
-  &__text {
-    text-transform: capitalize;
-    font-size: 1.2rem;
-    margin: 0.5rem 0 0;
-    font-weight: bold;
+    &-normal {
+      background-color: #a9a878;
+    }
+
+    &-grass {
+      background-color: #78c84f;
+    }
+
+    &-fire {
+      background-color: #f07f2f;
+    }
+
+    &-water {
+      background-color: #6890f0;
+    }
+
+    &-poison {
+      background-color: #a040a1;
+    }
+
+    &-electric {
+      background-color: #f8d030;
+    }
+
+    &-ice {
+      background-color: #98d8d8;
+    }
+
+    &-fighting {
+      background-color: #c03028;
+    }
+
+    &-ground {
+      background-color: #e0c069;
+    }
+
+    &-flying {
+      background-color: #a890f0;
+    }
+
+    &-rock {
+      background-color: #b7a038;
+    }
+
+    &-dark {
+      background-color: #6f5848;
+    }
+
+    &-psychic {
+      background-color: #f85888;
+    }
+
+    &-ghost {
+      background-color: #705798;
+    }
+
+    &-steel {
+      background-color: #b8b8d0;
+    }
+
+    &-bug {
+      background-color: #a8b821;
+    }
+
+    &-dragon {
+      background-color: #7038f9;
+    }
+
+    &-fairy {
+      background-color: #ffa3b1;
+    }
   }
 }

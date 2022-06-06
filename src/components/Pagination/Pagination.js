@@ -1,4 +1,5 @@
-import { useState } from "react";
+/* eslint-disable react-hooks/exhaustive-deps */
+import { useState, useEffect } from "react";
 import "./Pagination.scss";
 
 const Pagination = ({
@@ -7,15 +8,29 @@ const Pagination = ({
   handleOnClick,
   currentPage,
 }) => {
+  const getPageNumbers = () => {
+    const tempArray = [];
+    for (let i = 1; i <= Math.ceil(totalPokemon / pokemonPerPage); i++) {
+      tempArray.push(i);
+    }
+
+    return tempArray;
+  };
+
   const [maxLimit] = useState(10);
   const [currentBeginningPageNumber, setCurrentBeginningPageNumber] =
     useState(0);
+  const [pageNumbers, setPageNumbers] = useState([]);
 
-  const pageNumbers = [];
+  useEffect(() => {
+    setPageNumbers([...getPageNumbers()]);
+  }, [totalPokemon]);
 
-  for (let i = 1; i <= Math.ceil(totalPokemon / pokemonPerPage); i++) {
-    pageNumbers.push(i);
-  }
+  useEffect(() => {
+    if (totalPokemon < currentBeginningPageNumber * maxLimit) {
+      setCurrentBeginningPageNumber(0);
+    }
+  }, [pageNumbers, pokemonPerPage]);
 
   const onForwardClick = () => {
     setCurrentBeginningPageNumber((prev) => prev + maxLimit);
@@ -27,8 +42,8 @@ const Pagination = ({
 
   return (
     <nav className='pagination'>
-      {currentBeginningPageNumber > 0 && (
-        <button class='pagination__button' onClick={onBackClick}>
+      {currentBeginningPageNumber > 0 && pageNumbers.length > 1 && (
+        <button className='pagination__button' onClick={onBackClick}>
           🡸
         </button>
       )}
@@ -57,7 +72,7 @@ const Pagination = ({
         })}
       </ul>
       {pageNumbers.length - currentBeginningPageNumber > 10 && (
-        <button class='pagination__button' onClick={onForwardClick}>
+        <button className='pagination__button' onClick={onForwardClick}>
           🢂
         </button>
       )}
